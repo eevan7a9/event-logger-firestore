@@ -2,15 +2,14 @@ const eventLists = document.querySelector("#eventLists");
 const addForm = document.querySelector("#addEventForm");
 
 const renderEvent = function(item) {
-  console.log(item);
   const li = document.createElement("li");
   li.setAttribute("data-id", item.id);
 
   const h3 = document.createElement("h3");
-  h3.textContent = item.name;
+  h3.textContent = item.data().name;
 
   const span = document.createElement("span");
-  span.textContent = item.date.toDate();
+  span.textContent = item.data().date.toDate();
 
   const button = document.createElement("button");
   button.textContent = "x";
@@ -23,6 +22,13 @@ const renderEvent = function(item) {
   li.appendChild(div);
   li.appendChild(button);
   eventLists.appendChild(li);
+
+  button.addEventListener("click", e => {
+    e.stopPropagation();
+    db.collection("events")
+      .doc(item.id)
+      .delete();
+  });
 };
 
 db.collection("events")
@@ -30,7 +36,7 @@ db.collection("events")
   .then(snapshot => {
     // console.log(snapshot.docs); //shows data
     snapshot.docs.forEach(doc => {
-      renderEvent(doc.data());
+      renderEvent(doc);
     });
   });
 
