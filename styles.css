@@ -56,4 +56,21 @@ html {
   background: aliceblue;
   margin-bottom: 15px;
   padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#eventLists li button {
+  cursor: pointer;
+  font-weight: bold;
+  background: rgb(207, 61, 61);
+  color: aliceblue;
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  -ms-border-radius: 100%;
+  -o-border-radius: 100%;
+  border: none;
 }
