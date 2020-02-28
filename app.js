@@ -1,4 +1,5 @@
 const eventLists = document.querySelector("#eventLists");
+const addForm = document.querySelector("#addEventForm");
 
 const renderEvent = function(item) {
   console.log(item);
@@ -32,3 +33,14 @@ db.collection("events")
       renderEvent(doc.data());
     });
   });
+
+addForm.addEventListener("submit", e => {
+  e.preventDefault();
+  db.collection("events").add({
+    name: addForm.addEventName.value,
+    date: firebase.firestore.Timestamp.fromDate(
+      new Date(addForm.addEventLocation.value)
+    )
+  });
+  addForm.reset();
+});
