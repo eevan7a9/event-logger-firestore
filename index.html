@@ -22,9 +22,15 @@
           Event Logger
         </p>
         <form id="addEventForm">
-          <input type="text" id="addEventName" placeholder="Event Name..." />
-          <input type="date" id="addEventLocation" />
-          <button type="submit">Add</button>
+          <input
+            type="text"
+            id="addEventName"
+            placeholder="Event Name..."
+            required
+          />
+          <input type="date" id="addEventDate" required />
+          <button type="submit" id="add">Add</button>
+          <button type="submit" id="update">Update</button>
         </form>
         <div class="event-lists-container">
           <ul id="eventLists">
