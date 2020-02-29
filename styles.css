@@ -37,7 +37,8 @@ html {
 #addEventForm input {
   width: 100%;
   height: 40px;
-  margin-right: 20px;
+  margin-right: 10px;
+  margin-left: 10px;
   text-align: center;
 }
 #addEventForm button {
@@ -60,6 +61,11 @@ html {
   background: rgb(0, 140, 255);
   display: none;
   border: 3px solid #00e1ff;
+}
+#addEventForm button#clear {
+  background: rgb(245, 245, 245);
+  color: #333;
+  border: 3px solid #808686;
 }
 .event-lists-container {
   padding: 15px 10px;

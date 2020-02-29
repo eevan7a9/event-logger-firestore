@@ -2,6 +2,7 @@ const eventLists = document.querySelector("#eventLists");
 const inputForm = document.querySelector("#addEventForm");
 const add = document.querySelector("#add");
 const update = document.querySelector("#update");
+const clear = document.querySelector("#clear");
 
 let updating = false;
 let eventUpdateId = "";
@@ -153,4 +154,11 @@ inputForm.addEventListener("submit", e => {
       });
   }
   inputForm.reset();
+});
+
+clear.addEventListener("click", e => {
+  e.stopPropagation();
+  inputForm.reset();
+  add.style.display = "block";
+  update.style.display = "none";
 });
