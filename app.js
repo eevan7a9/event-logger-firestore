@@ -31,13 +31,29 @@ const renderEvent = function(item) {
   });
 };
 
+// db.collection("events")
+//   .orderBy("date")
+//   .get()
+//   .then(snapshot => {
+//     // console.log(snapshot.docs); //shows data
+//     snapshot.docs.forEach(doc => {
+//       renderEvent(doc);
+//     });
+//   });
+
 db.collection("events")
-  .get()
-  .then(snapshot => {
-    // console.log(snapshot.docs); //shows data
-    snapshot.docs.forEach(doc => {
-      renderEvent(doc);
+  .orderBy("date")
+  .onSnapshot(snapshot => {
+    snapshot.docChanges().forEach(change => {
+      console.log(change);
+      if (change.type === "added") {
+        renderEvent(change.doc);
+      } else if (change.type === "removed") {
+        const li = document.querySelector(`[data-id="${change.doc.id}"]`);
+        eventLists.removeChild(li);
+      }
     });
+    // console.log(snapshot.docChanges());
   });
 
 addForm.addEventListener("submit", e => {
